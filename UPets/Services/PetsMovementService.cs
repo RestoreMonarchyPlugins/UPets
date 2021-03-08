@@ -35,7 +35,8 @@ namespace Adam.PetsPlugin.Services
                 ReflectionUtil.setValue("isHunting", false, pet.Animal);
                 ReflectionUtil.callMethod("updateTicking", pet.Animal);
 
-                if (Vector3.Distance(pet.Animal.transform.position, pet.Player.transform.position) > pluginInstance.Configuration.Instance.MaxDistance)
+                if (Vector3.Distance(pet.Animal.transform.position, pet.Player.transform.position) > pluginInstance.Configuration.Instance.MaxDistance && 
+                    !player.IsInVehicle)
                 {
                     pet.Animal.transform.position = pet.Player.transform.position;
                 }
