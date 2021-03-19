@@ -59,8 +59,13 @@ namespace Adam.PetsPlugin.Services
                 KillPet(activePet);
             }
 
-            AnimalManager.spawnAnimal(pet.AnimalId, player.Position, player.Player.transform.rotation);
+            var point = player.Position;
+            AnimalManager.spawnAnimal(pet.AnimalId, point, player.Player.transform.rotation);
+
+            // remove animal spawn
+            AnimalManager.packs.RemoveAll(x => x.spawns.Exists(y => y.point == point));
             
+
             // I know it's crap and but that's the simplest way atm, please pr if you know better
             var animals = new List<Animal>();
             AnimalManager.getAnimalsInRadius(player.Position, 1, animals);
