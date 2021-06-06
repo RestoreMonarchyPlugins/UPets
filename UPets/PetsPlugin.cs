@@ -46,6 +46,7 @@ namespace Adam.PetsPlugin
             PetsService = gameObject.AddComponent<PetsService>();
             PetsMovementService = gameObject.AddComponent<PetsMovementService>();
 
+            Logger.Log($"Made by AdamAdam, maintained by Restore Monarchy Plugins", ConsoleColor.Yellow);
             Logger.Log($"{Name} {Assembly.GetName().Version} has been loaded!", ConsoleColor.Yellow);
         }
 
@@ -57,8 +58,7 @@ namespace Adam.PetsPlugin
 
             Destroy(PetsService);
             Destroy(PetsMovementService);
-
-            Logger.Log($"Made by AdamAdam, maintained by Restore Monarchy Plugins", ConsoleColor.Yellow);
+            
             Logger.Log($"{Name} has been unloaded!", ConsoleColor.Yellow);
         }
 

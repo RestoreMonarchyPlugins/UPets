@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Rocket.Core.Extensions;
 using UnityEngine;
+using System.Collections;
 
 namespace Adam.PetsPlugin.Services
 {
@@ -40,7 +41,8 @@ namespace Adam.PetsPlugin.Services
             //we want to also kill all pets on shutdown
             foreach (var pet in ActivePets.ToArray())
             {
-                KillPet(pet);
+                RemovePet(pet);
+                SendDeadPet(pet);
             }
         }
 
@@ -48,7 +50,7 @@ namespace Adam.PetsPlugin.Services
         {
             foreach (var pet in GetPlayerActivePets(player.Id).ToArray())
             {
-                KillPet(pet);
+                StartCoroutine(KillPet(pet));
             }
         }
         
@@ -56,7 +58,7 @@ namespace Adam.PetsPlugin.Services
         {
             foreach (var activePet in GetPlayerActivePets(player.Id).ToArray())
             {
-                KillPet(activePet);
+                StartCoroutine(KillPet(activePet));
             }
 
             var point = player.Position;
@@ -77,11 +79,28 @@ namespace Adam.PetsPlugin.Services
             OnPetSpawned.TryInvoke(pet);
         }
 
-        public void KillPet(PlayerPet pet)
+        private readonly Vector3 undergroundPosition = new Vector3(0, 0, 0);
+        private const float killSecondsDelay = 3;
+
+        private void RemovePet(PlayerPet pet)
         {
-            AnimalsHelper.KillAnimal(pet.Animal);
+            pet.Animal.transform.position = undergroundPosition;
             ActivePets.Remove(pet);
             OnPetDespawned.TryInvoke(pet);
+        }
+
+        private void SendDeadPet(PlayerPet pet)
+        {
+            AnimalsHelper.KillAnimal(pet.Animal);
+        }
+
+        public IEnumerator KillPet(PlayerPet pet)
+        {
+            RemovePet(pet);   
+
+            yield return new WaitForSeconds(killSecondsDelay);
+
+            SendDeadPet(pet);
         }
 
         public bool IsPet(Animal animal) => ActivePets.Exists(x => x.Animal == animal);
