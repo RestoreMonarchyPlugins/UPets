@@ -63,7 +63,7 @@ namespace Adam.PetsPlugin
                     action.Invoke();
                 } catch (Exception e)
                 {
-                    TaskDispatcher.QueueOnMainThread(() => Logger.LogException(e, $"YA'LL WANNA SINGLE SAY"));
+                    TaskDispatcher.QueueOnMainThread(() => Logger.LogException(e));
                 }
             });
         }
@@ -96,7 +96,7 @@ namespace Adam.PetsPlugin
 
                 if (pet != null)
                 {
-                    pluginInstance.PetsService.KillPet(pet);
+                    pluginInstance.PetsService.InvokeKillPet(pet);
                     pluginInstance.ReplyPlayer(player, "PetDespawnSuccess", config.Name);
                     return;
                 }

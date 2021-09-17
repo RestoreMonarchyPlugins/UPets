@@ -50,7 +50,7 @@ namespace Adam.PetsPlugin.Services
         {
             foreach (var pet in GetPlayerActivePets(player.Id).ToArray())
             {
-                StartCoroutine(KillPet(pet));
+                InvokeKillPet(pet);
             }
         }
         
@@ -58,7 +58,7 @@ namespace Adam.PetsPlugin.Services
         {
             foreach (var activePet in GetPlayerActivePets(player.Id).ToArray())
             {
-                StartCoroutine(KillPet(activePet));
+                InvokeKillPet(activePet);
             }
 
             var point = player.Position;
@@ -94,7 +94,12 @@ namespace Adam.PetsPlugin.Services
             AnimalsHelper.KillAnimal(pet.Animal);
         }
 
-        public IEnumerator KillPet(PlayerPet pet)
+        public void InvokeKillPet(PlayerPet pet)
+        {
+            StartCoroutine(KillPet(pet));
+        }
+
+        private IEnumerator KillPet(PlayerPet pet)
         {
             RemovePet(pet);   
 
