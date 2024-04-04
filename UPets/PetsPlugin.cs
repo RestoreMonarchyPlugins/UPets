@@ -93,7 +93,8 @@ namespace Adam.PetsPlugin
             { "PetCantAfford", "You can't afford to buy {0} for ${1}" },
             { "PetBuySuccess", "You successfully bought {0} for ${1}!" },
             { "PetBuyAlreadyHave", "You already have {0}!" },
-            { "PetBuyNoPermission", "You don't have permission to buy {0}!" }
+            { "PetBuyNoPermission", "You don't have permission to buy {0}!" },
+            { "PetKilledByOwner", "You killed your pet {0}!" }
         };
 
         [RocketCommand("pets", "Displays a list of your pets", "", AllowedCaller.Player)]

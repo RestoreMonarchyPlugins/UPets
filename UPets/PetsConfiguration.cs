@@ -1,11 +1,6 @@
 ﻿using Adam.PetsPlugin.Models;
 using Rocket.API;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Serialization;
-using UnityEngine;
 
 namespace Adam.PetsPlugin
 {
@@ -20,8 +15,9 @@ namespace Adam.PetsPlugin
         public string DatabasePassword { get; set; }
         public string DatabaseName { get; set; }
         public string DatabaseTableName { get; set; }
-        public int DatabasePort { get; set; }        
-        
+        public int DatabasePort { get; set; }
+        public bool EnableOwnerKill { get; set; } = true;
+
         public List<PetConfig> Pets { get; set; }
 
         public void LoadDefaults()
@@ -36,6 +32,8 @@ namespace Adam.PetsPlugin
             DatabaseName = "unturned";
             DatabaseTableName = "PlayersPets";
             DatabasePort = 3306;
+            EnableOwnerKill = true;
+
             Pets = new List<PetConfig>() 
             {
                 new PetConfig(6, "cow", 100, ""),

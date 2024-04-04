@@ -5,14 +5,14 @@
 		<LangVersion>latest</LangVersion>
 		<AssemblyName>UPets</AssemblyName>
 		<RootNamespace>Adam.PetsPlugin</RootNamespace>
-		<AssemblyVersion>3.0.8</AssemblyVersion>
-		<FileVersion>3.0.8</FileVersion>
+		<AssemblyVersion>3.1.0</AssemblyVersion>
+		<FileVersion>3.1.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Dapper" Version="2.0.123" />
+	  <PackageReference Include="Dapper" Version="2.0.78" />
 	  <PackageReference Include="Lib.Harmony" Version="2.2.1" />
-	  <PackageReference Include="MySql.Data" Version="8.0.28" />
+	  <PackageReference Include="MySql.Data" Version="8.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Rocket.Unturned.Events;
+﻿using Adam.PetsPlugin.Helpers;
+using Rocket.Unturned.Events;
 using Rocket.Unturned.Player;
 using UnityEngine;
 using UPets.Reflection;
@@ -38,7 +39,7 @@ namespace Adam.PetsPlugin.Services
                 if (Vector3.Distance(pet.Animal.transform.position, pet.Player.transform.position) > pluginInstance.Configuration.Instance.MaxDistance && 
                     !player.IsInVehicle)
                 {
-                    pet.Animal.transform.position = pet.Player.transform.position;
+                    pet.Animal.transform.position = AnimalsHelper.GetPosition(player.Player);
                 }
             }
         }

@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Rocket.Core.Extensions;
 using UnityEngine;
 using System.Collections;
+using Rocket.Unturned.Chat;
+using Steamworks;
 
 namespace Adam.PetsPlugin.Services
 {
@@ -32,11 +34,13 @@ namespace Adam.PetsPlugin.Services
         void Start()
         {
             U.Events.OnPlayerDisconnected += OnPlayerDisconnected;
+            DamageTool.damageAnimalRequested += OnDamageAnimalRequested;
         }
 
         void OnDestroy()
         {
             U.Events.OnPlayerDisconnected -= OnPlayerDisconnected;
+            DamageTool.damageAnimalRequested -= OnDamageAnimalRequested;
             
             //we want to also kill all pets on shutdown
             foreach (var pet in ActivePets.ToArray())
@@ -53,7 +57,27 @@ namespace Adam.PetsPlugin.Services
                 InvokeKillPet(pet);
             }
         }
-        
+
+        private void OnDamageAnimalRequested(ref DamageAnimalParameters parameters, ref bool shouldAllow)
+        {
+            PlayerPet pet = GetPet(parameters.animal);
+
+            if (pet != null)
+            {
+                if (parameters.instigator is Player instigator && instigator == pet.Player)
+                {
+                    InvokeKillPet(pet);
+                    
+                    CSteamID steamID = pet.Player.channel.owner.playerID.steamID;
+                    string animalName = pet.Animal.asset.animalName;
+
+                    UnturnedChat.Say(steamID, pluginInstance.Translate("PetKilledByOwner", animalName), pluginInstance.MessageColor);
+                }
+
+                shouldAllow = false;
+            }
+        }
+
         public void SpawnPet(UnturnedPlayer player, PlayerPet pet)
         {
             foreach (var activePet in GetPlayerActivePets(player.Id).ToArray())
@@ -61,12 +85,11 @@ namespace Adam.PetsPlugin.Services
                 InvokeKillPet(activePet);
             }
 
-            var point = player.Position;
+            Vector3 point = player.Player.transform.position;
             AnimalManager.spawnAnimal(pet.AnimalId, point, player.Player.transform.rotation);
 
             // remove animal spawn
-            AnimalManager.packs.RemoveAll(x => x.spawns.Exists(y => y.point == point));
-            
+            AnimalManager.packs.RemoveAll(x => x.spawns.Exists(y => y.point == point));            
 
             // I know it's crap and but that's the simplest way atm, please pr if you know better
             var animals = new List<Animal>();
