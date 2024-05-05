@@ -1,11 +1,11 @@
-﻿using Adam.PetsPlugin.Helpers;
-using Adam.PetsPlugin.Models;
+﻿using RestoreMonarchy.UPets.Helpers;
+using RestoreMonarchy.UPets.Models;
 using HarmonyLib;
 using SDG.Unturned;
 using UnityEngine;
 using UPets.Reflection;
 
-namespace Adam.PetsPlugin.Patches
+namespace RestoreMonarchy.UPets.Patches
 {
     [HarmonyPatch(typeof(Animal))]
     class AnimalPatches

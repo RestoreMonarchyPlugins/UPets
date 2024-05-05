@@ -1,4 +1,4 @@
-﻿using Adam.PetsPlugin.Models;
+﻿using RestoreMonarchy.UPets.Models;
 using Dapper;
 using MySql.Data.MySqlClient;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adam.PetsPlugin.Providers
+namespace RestoreMonarchy.UPets.Providers
 {
     public class MySQLPetsDatabaseProvider : IPetsDatabaseProvider
     {

@@ -4,52 +4,68 @@
 		<TargetFramework>net48</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<AssemblyName>UPets</AssemblyName>
-		<RootNamespace>Adam.PetsPlugin</RootNamespace>
-		<AssemblyVersion>3.1.0</AssemblyVersion>
-		<FileVersion>3.1.0</FileVersion>
+		<RootNamespace>RestoreMonarchy.UPets</RootNamespace>
+		<AssemblyVersion>3.1.1</AssemblyVersion>
+		<FileVersion>3.1.1</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Dapper" Version="2.0.78" />
-	  <PackageReference Include="Lib.Harmony" Version="2.2.1" />
-	  <PackageReference Include="MySql.Data" Version="8.3.0" />
+	  <PackageReference Include="Lib.Harmony" Version="2.3.3" />
+	  <PackageReference Include="MySql.Data" Version="8.0.30" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">
-			<HintPath>..\libraries\Assembly-CSharp.dll</HintPath>
-			<CopyLocal>True</CopyLocal>
+			<HintPath>..\lib\Assembly-CSharp.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="com.rlabrecque.steamworks.net">
-		  <HintPath>..\libraries\com.rlabrecque.steamworks.net.dll</HintPath>
+			<HintPath>..\lib\com.rlabrecque.steamworks.net.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>..\libraries\Newtonsoft.Json.dll</HintPath>
+			<HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Rocket.API">
-			<HintPath>..\libraries\Rocket.API.dll</HintPath>
+			<HintPath>..\lib\Rocket.API.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Rocket.Core">
-			<HintPath>..\libraries\Rocket.Core.dll</HintPath>
+			<HintPath>..\lib\Rocket.Core.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Rocket.Unturned">
-			<HintPath>..\libraries\Rocket.Unturned.dll</HintPath>
+			<HintPath>..\lib\Rocket.Unturned.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="SDG.NetTransport">
-		  <HintPath>..\libraries\SDG.NetTransport.dll</HintPath>
+			<HintPath>..\lib\SDG.NetTransport.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="Uconomy">
-		  <HintPath>..\libraries\Uconomy.dll</HintPath>
+			<HintPath>..\lib\Uconomy.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine">
-			<HintPath>..\libraries\UnityEngine.dll</HintPath>
+			<HintPath>..\lib\UnityEngine.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
-			<HintPath>..\libraries\UnityEngine.CoreModule.dll</HintPath>
+			<HintPath>..\lib\UnityEngine.CoreModule.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine.PhysicsModule">
-		  <HintPath>..\libraries\UnityEngine.PhysicsModule.dll</HintPath>
+			<HintPath>..\lib\UnityEngine.PhysicsModule.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\lib\output\*.*">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 </Project>

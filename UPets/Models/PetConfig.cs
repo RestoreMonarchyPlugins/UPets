@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Adam.PetsPlugin.Models
+namespace RestoreMonarchy.UPets.Models
 {
     public class PetConfig
     {

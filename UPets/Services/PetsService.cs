@@ -1,5 +1,5 @@
-﻿using Adam.PetsPlugin.Helpers;
-using Adam.PetsPlugin.Models;
+﻿using RestoreMonarchy.UPets.Helpers;
+using RestoreMonarchy.UPets.Models;
 using Rocket.Core.Utils;
 using Rocket.Unturned;
 using Rocket.Unturned.Player;
@@ -15,7 +15,7 @@ using System.Collections;
 using Rocket.Unturned.Chat;
 using Steamworks;
 
-namespace Adam.PetsPlugin.Services
+namespace RestoreMonarchy.UPets.Services
 {
     public class PetsService : MonoBehaviour
     {

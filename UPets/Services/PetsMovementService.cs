@@ -1,10 +1,10 @@
-﻿using Adam.PetsPlugin.Helpers;
+﻿using RestoreMonarchy.UPets.Helpers;
 using Rocket.Unturned.Events;
 using Rocket.Unturned.Player;
 using UnityEngine;
 using UPets.Reflection;
 
-namespace Adam.PetsPlugin.Services
+namespace RestoreMonarchy.UPets.Services
 {
     public class PetsMovementService : MonoBehaviour
     {

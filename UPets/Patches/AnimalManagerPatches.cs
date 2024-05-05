@@ -2,7 +2,7 @@
 using SDG.Unturned;
 using Steamworks;
 
-namespace Adam.PetsPlugin.Patches
+namespace RestoreMonarchy.UPets.Patches
 {
     [HarmonyPatch(typeof(AnimalManager))]
     class AnimalManagerPatches

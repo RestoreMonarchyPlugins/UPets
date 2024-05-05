@@ -3,8 +3,8 @@ using Rocket.API.Collections;
 using SDG.Unturned;
 using System.Reflection;
 using HarmonyLib;
-using Adam.PetsPlugin.Providers;
-using Adam.PetsPlugin.Services;
+using RestoreMonarchy.UPets.Providers;
+using RestoreMonarchy.UPets.Services;
 using Rocket.Unturned.Chat;
 using Rocket.Core.Logging;
 using System;
@@ -13,14 +13,14 @@ using System.Threading;
 using Rocket.Core.Utils;
 using Rocket.Core.Commands;
 
-namespace Adam.PetsPlugin
+namespace RestoreMonarchy.UPets
 {
     public class PetsPlugin : RocketPlugin<PetsConfiguration>
     {
         public static PetsPlugin Instance { get; private set; }
         public UnityEngine.Color MessageColor { get; private set; }
 
-        public const string HarmonyInstanceId = "de.petsplugin";
+        public const string HarmonyInstanceId = "com.restoremonarchy.upets";
         private Harmony HarmonyInstance { get; set; }
 
         public IPetsDatabaseProvider Database { get; private set; }
@@ -46,7 +46,7 @@ namespace Adam.PetsPlugin
             PetsService = gameObject.AddComponent<PetsService>();
             PetsMovementService = gameObject.AddComponent<PetsMovementService>();
 
-            Logger.Log($"Made by AdamAdam, maintained by Restore Monarchy Plugins", ConsoleColor.Yellow);
+            Logger.Log($"Made by AdamAdam, maintained by Restore Monarchy.", ConsoleColor.Yellow);
             Logger.Log($"{Name} {Assembly.GetName().Version} has been loaded!", ConsoleColor.Yellow);
         }
 

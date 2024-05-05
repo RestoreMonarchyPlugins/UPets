@@ -1,9 +1,9 @@
-﻿using Adam.PetsPlugin.Models;
-using Adam.PetsPlugin.Storage;
+﻿using RestoreMonarchy.UPets.Models;
+using RestoreMonarchy.UPets.Storage;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Adam.PetsPlugin.Providers
+namespace RestoreMonarchy.UPets.Providers
 {
     public class JsonPetsDatabaseProvider : IPetsDatabaseProvider
     {

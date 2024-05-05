@@ -5,13 +5,13 @@ using System.Text;
 using Rocket.API;
 using Rocket.Unturned.Player;
 using Rocket.Unturned.Chat;
-using Adam.PetsPlugin.Models;
-using Adam.PetsPlugin.Helpers;
+using RestoreMonarchy.UPets.Models;
+using RestoreMonarchy.UPets.Helpers;
 using System.Threading;
 using Rocket.Core.Utils;
 using Rocket.Core.Logging;
 
-namespace Adam.PetsPlugin
+namespace RestoreMonarchy.UPets
 {
     public class PetCommand : IRocketCommand
     {

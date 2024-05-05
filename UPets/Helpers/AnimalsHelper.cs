@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Adam.PetsPlugin.Helpers
+namespace RestoreMonarchy.UPets.Helpers
 {
     public class AnimalsHelper
     {

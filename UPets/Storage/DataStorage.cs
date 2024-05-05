@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace Adam.PetsPlugin.Storage
+namespace RestoreMonarchy.UPets.Storage
 {
     public class DataStorage<T> where T : class
     {

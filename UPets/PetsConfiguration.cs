@@ -1,8 +1,8 @@
-﻿using Adam.PetsPlugin.Models;
+﻿using RestoreMonarchy.UPets.Models;
 using Rocket.API;
 using System.Collections.Generic;
 
-namespace Adam.PetsPlugin
+namespace RestoreMonarchy.UPets
 {
     public class PetsConfiguration : IRocketPluginConfiguration
     {

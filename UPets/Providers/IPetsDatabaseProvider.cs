@@ -1,11 +1,11 @@
-﻿using Adam.PetsPlugin.Models;
+﻿using RestoreMonarchy.UPets.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adam.PetsPlugin.Providers
+namespace RestoreMonarchy.UPets.Providers
 {
     public interface IPetsDatabaseProvider
     {

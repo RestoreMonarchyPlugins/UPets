@@ -2,7 +2,7 @@
 using SDG.Unturned;
 using System;
 
-namespace Adam.PetsPlugin.Models
+namespace RestoreMonarchy.UPets.Models
 {
     public class PlayerPet
     {
