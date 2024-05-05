@@ -1,20 +1,23 @@
-## UPets
+# UPets
 Ever wanted a pet? In unturned? Following you around? Here you got one!
 
-### Features
-- Supports both MySQL and local Json data file writing
+## Features
+- Supports both MySQL and local JSON data file writing
 - Pet will follow the player everywhere
 - If `MaxDistance` is reached animal will be teleported to player
 - All database calls are made asynchronously
 
-### Commands
-- **/pet help - Displays help for the player**
-- **/pet list - Displays a list of your pets**
-- **/pet buy \<name\> - Buys a pet with specified name**
-- **/pet shop - Displays a list of available pets in the shop**
-- **/pet \<name\> - Spawns/Despawns a specified pet**
+## Credits
+* **AdamAdam** for originally creating the plugin
 
-### Configuration
+## Commands
+- **/pet help** - Displays help information
+- **/pet list** - Displays a list of your pets
+- **/pet buy \<name\>** - Buys a pet with specified name
+- **/pet shop** - Displays a list of available pets in the shop
+- **/pet \<name\>** - Spawns/Despawns a specified pet
+
+## Configuration
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <PetsConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -28,6 +31,7 @@ Ever wanted a pet? In unturned? Following you around? Here you got one!
   <DatabaseName>unturned</DatabaseName>
   <DatabaseTableName>PlayersPets</DatabaseTableName>
   <DatabasePort>3306</DatabasePort>
+  <EnableOwnerKill>true</EnableOwnerKill>
   <Pets>
     <PetConfig Id="6" Name="cow" Cost="100" Permission="" />
     <PetConfig Id="5" Name="bear" Cost="250" Permission="" />
@@ -39,7 +43,7 @@ Ever wanted a pet? In unturned? Following you around? Here you got one!
 </PetsConfiguration>
 ```
 
-### Translations
+## Translations
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Translations xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -59,5 +63,7 @@ Ever wanted a pet? In unturned? Following you around? Here you got one!
   <Translation Id="PetCantAfford" Value="You can't afford to buy {0} for ${1}" />
   <Translation Id="PetBuySuccess" Value="You successfully bought {0} for ${1}!" />
   <Translation Id="PetBuyAlreadyHave" Value="You already have {0}!" />
+  <Translation Id="PetBuyNoPermission" Value="You don't have permission to buy {0}!" />
+  <Translation Id="PetKilledByOwner" Value="You killed your pet {0}!" />
 </Translations>
 ```
