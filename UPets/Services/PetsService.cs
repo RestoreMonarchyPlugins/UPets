@@ -14,6 +14,7 @@ using UnityEngine;
 using System.Collections;
 using Rocket.Unturned.Chat;
 using Steamworks;
+using HarmonyLib;
 
 namespace RestoreMonarchy.UPets.Services
 {
@@ -89,9 +90,13 @@ namespace RestoreMonarchy.UPets.Services
             AnimalManager.spawnAnimal(pet.AnimalId, point, player.Player.transform.rotation);
 
             // remove animal spawn
-            AnimalManager.packs.RemoveAll(x => x.spawns.Exists(y => y.point == point));            
+            AnimalManager.packs.RemoveAll(x => x.spawns.Exists(y => y.point == point));
 
-            // I know it's crap and but that's the simplest way atm, please pr if you know better
+            if (AnimalManager.packs.Count == 0)
+            {
+                AnimalManager.packs.Add(new PackInfo());
+            }
+
             var animals = new List<Animal>();
             AnimalManager.getAnimalsInRadius(player.Position, 1, animals);
 
