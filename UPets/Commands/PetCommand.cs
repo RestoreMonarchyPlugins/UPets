@@ -214,7 +214,7 @@ namespace RestoreMonarchy.UPets
         public static void HelpCommand(IRocketPlayer caller)
         {
             pluginInstance.ReplyPlayer(caller, "PetHelpLine1");
-            if (!UconomyHelper.IsLoaded())
+            if (UconomyHelper.IsLoaded())
             {
                 pluginInstance.ReplyPlayer(caller, "PetHelpLine2");
                 pluginInstance.ReplyPlayer(caller, "PetHelpLine3");
