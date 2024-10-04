@@ -1,15 +1,14 @@
-﻿using System;
+﻿using RestoreMonarchy.UPets.Helpers;
+using RestoreMonarchy.UPets.Models;
+using Rocket.API;
+using Rocket.Core.Logging;
+using Rocket.Core.Utils;
+using Rocket.Unturned.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Rocket.API;
-using Rocket.Unturned.Player;
-using Rocket.Unturned.Chat;
-using RestoreMonarchy.UPets.Models;
-using RestoreMonarchy.UPets.Helpers;
 using System.Threading;
-using Rocket.Core.Utils;
-using Rocket.Core.Logging;
 
 namespace RestoreMonarchy.UPets
 {
@@ -54,7 +53,7 @@ namespace RestoreMonarchy.UPets
             }
         }
 
-        private static void RunAsync(Action action)
+        private static void RunAsync(System.Action action)
         {
             ThreadPool.QueueUserWorkItem((_) => 
             { 
@@ -130,6 +129,12 @@ namespace RestoreMonarchy.UPets
 
         public static void BuyCommand(UnturnedPlayer player, PetConfig config)
         {
+            if (UconomyHelper.IsLoaded() == false)
+            {
+                pluginInstance.ReplyPlayer(player, "PetShopDisabled");
+                return;
+            }
+
             if (!player.HasPermission(config.Permission) && !player.IsAdmin && !string.IsNullOrEmpty(config.Permission))
             {
                 pluginInstance.ReplyPlayer(player, "PetBuyNoPermission", config.Name);
@@ -166,6 +171,12 @@ namespace RestoreMonarchy.UPets
 
         public static void ShopCommand(IRocketPlayer caller)
         {
+            if (UconomyHelper.IsLoaded() == false)
+            {
+                pluginInstance.ReplyPlayer(caller, "PetShopDisabled");
+                return;
+            }
+
             StringBuilder sb = new StringBuilder(pluginInstance.Translate("PetShopAvailable"));
             foreach (var petConfig in pluginInstance.Configuration.Instance.Pets)
             {
@@ -203,8 +214,11 @@ namespace RestoreMonarchy.UPets
         public static void HelpCommand(IRocketPlayer caller)
         {
             pluginInstance.ReplyPlayer(caller, "PetHelpLine1");
-            pluginInstance.ReplyPlayer(caller, "PetHelpLine2");
-            pluginInstance.ReplyPlayer(caller, "PetHelpLine3");
+            if (!UconomyHelper.IsLoaded())
+            {
+                pluginInstance.ReplyPlayer(caller, "PetHelpLine2");
+                pluginInstance.ReplyPlayer(caller, "PetHelpLine3");
+            }            
             pluginInstance.ReplyPlayer(caller, "PetHelpLine4");
         }
 

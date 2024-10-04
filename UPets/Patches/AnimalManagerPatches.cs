@@ -1,17 +1,30 @@
 ﻿using HarmonyLib;
 using SDG.Unturned;
-using Steamworks;
 
 namespace RestoreMonarchy.UPets.Patches
 {
     [HarmonyPatch(typeof(AnimalManager))]
     class AnimalManagerPatches
     {
-        [HarmonyPatch("askAnimalAttack")]
+        [HarmonyPatch("sendAnimalAttack")]
         [HarmonyPrefix]
-        public static bool Prefix(CSteamID steamID, ushort index)
+        public static bool PrefixAttack(Animal animal)
         {
-            return !PetsPlugin.Instance.PetsService.IsPet(AnimalManager.animals[index]);
+            return !PetsPlugin.Instance.PetsService.IsPet(animal);
+        }
+
+        [HarmonyPatch("sendAnimalPanic")]
+        [HarmonyPrefix]
+        public static bool PrefixPanic(Animal animal)
+        {
+            return !PetsPlugin.Instance.PetsService.IsPet(animal);
+        }
+
+        [HarmonyPatch("sendAnimalStartle")]
+        [HarmonyPrefix]
+        public static bool PrefixStartle(Animal animal)
+        {
+            return !PetsPlugin.Instance.PetsService.IsPet(animal);
         }
     }
 }

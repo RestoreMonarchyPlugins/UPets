@@ -6,6 +6,7 @@ Ever wanted a pet? In unturned? Following you around? Here you got one!
 - Pet will follow the player everywhere
 - If `MaxDistance` is reached animal will be teleported to player
 - All database calls are made asynchronously
+- If you want players to be able to buy pets, Uconomy must be installed.
 
 ## Credits
 * **AdamAdam** for originally creating the plugin
@@ -16,6 +17,21 @@ Ever wanted a pet? In unturned? Following you around? Here you got one!
 - **/pet buy \<name\>** - Buys a pet with specified name
 - **/pet shop** - Displays a list of available pets in the shop
 - **/pet \<name\>** - Spawns/Despawns a specified pet
+
+## Permissions
+```xml
+<!-- Primary permission to use pet commands like pet help, pet buy etc. -->
+<Permission Cooldown="0">pet</Permission>
+
+<!-- Permissions to own a pet without having to buy them -->
+<Permission Cooldown="0">pet.own.cow</Permission>
+<Permission Cooldown="0">pet.own.bear</Permission>
+<Permission Cooldown="0">pet.own.wolf</Permission>
+<Permission Cooldown="0">pet.own.reindeer</Permission>
+<Permission Cooldown="0">pet.own.pig</Permission>
+<Permission Cooldown="0">pet.own.deer</Permission>
+```
+
 
 ## Configuration
 ```xml
