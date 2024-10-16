@@ -67,12 +67,15 @@ namespace RestoreMonarchy.UPets.Services
             {
                 if (parameters.instigator is Player instigator && instigator == pet.Player)
                 {
-                    InvokeKillPet(pet);
-                    
-                    CSteamID steamID = pet.Player.channel.owner.playerID.steamID;
-                    string animalName = pet.Animal.asset.animalName;
+                    if (pluginInstance.Configuration.Instance.EnableOwnerKill)
+                    {
+                        InvokeKillPet(pet);
 
-                    UnturnedChat.Say(steamID, pluginInstance.Translate("PetKilledByOwner", animalName), pluginInstance.MessageColor);
+                        CSteamID steamID = pet.Player.channel.owner.playerID.steamID;
+                        string animalName = pet.Animal.asset.animalName;
+
+                        UnturnedChat.Say(steamID, pluginInstance.Translate("PetKilledByOwner", animalName), pluginInstance.MessageColor);
+                    }
                 }
 
                 shouldAllow = false;
