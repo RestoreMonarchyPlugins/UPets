@@ -1,20 +1,14 @@
 ﻿using RestoreMonarchy.UPets.Helpers;
 using RestoreMonarchy.UPets.Models;
-using Rocket.Core.Utils;
+using Rocket.Core.Extensions;
 using Rocket.Unturned;
 using Rocket.Unturned.Player;
 using SDG.Unturned;
-using System;
+using Steamworks;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rocket.Core.Extensions;
 using UnityEngine;
-using System.Collections;
-using Rocket.Unturned.Chat;
-using Steamworks;
-using HarmonyLib;
 
 namespace RestoreMonarchy.UPets.Services
 {
@@ -73,8 +67,9 @@ namespace RestoreMonarchy.UPets.Services
 
                         CSteamID steamID = pet.Player.channel.owner.playerID.steamID;
                         string animalName = pet.Animal.asset.animalName;
-
-                        UnturnedChat.Say(steamID, pluginInstance.Translate("PetKilledByOwner", animalName), pluginInstance.MessageColor);
+                        
+                        UnturnedPlayer unturnedPlayer = UnturnedPlayer.FromPlayer(pet.Player);
+                        pluginInstance.SendMessageToPlayer(unturnedPlayer, "PetKilledByOwner", animalName);
                     }
                 }
 

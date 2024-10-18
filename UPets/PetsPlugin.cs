@@ -12,6 +12,7 @@ using Rocket.API;
 using System.Threading;
 using Rocket.Core.Utils;
 using Rocket.Core.Commands;
+using Rocket.Unturned.Player;
 
 namespace RestoreMonarchy.UPets
 {
@@ -62,18 +63,30 @@ namespace RestoreMonarchy.UPets
             Logger.Log($"{Name} has been unloaded!", ConsoleColor.Yellow);
         }
 
-        public void ReplyPlayer(IRocketPlayer player, string translationsKey, params object[] args)
+        internal void SendMessageToPlayer(IRocketPlayer player, string translationKey, params object[] placeholder)
         {
             if (!ThreadUtil.IsGameThread(Thread.CurrentThread))
+            {
                 TaskDispatcher.QueueOnMainThread(Send);
-            else
+            } else
+            {
                 Send();
-            
+            }
+
             void Send()
             {
-                UnturnedChat.Say(player, Translate(translationsKey, args), MessageColor);
+                string msg = Translate(translationKey, placeholder);
+                msg = msg.Replace("[[", "<").Replace("]]", ">");
+                if (player is ConsolePlayer)
+                {
+                    Logger.Log(msg);
+                    return;
+                }
+
+                UnturnedPlayer unturnedPlayer = (UnturnedPlayer)player;
+                ChatManager.serverSendMessage(msg, MessageColor, null, unturnedPlayer.SteamPlayer(), EChatMode.SAY, Configuration.Instance.MessageIconUrl, true);
             }
-        }
+        }        
 
         public override TranslationList DefaultTranslations => new TranslationList()
         {

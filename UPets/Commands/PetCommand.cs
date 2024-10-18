@@ -72,14 +72,14 @@ namespace RestoreMonarchy.UPets
             config = null;
             if (value == null)
             {
-                pluginInstance.ReplyPlayer(caller, "PetNameRequired", value);
+                pluginInstance.SendMessageToPlayer(caller, "PetNameRequired", value);
                 return false;
             }
 
             config = pluginInstance.Configuration.Instance.Pets.FirstOrDefault(x => x.Name.Equals(value, StringComparison.OrdinalIgnoreCase));
             if (config == null)
             {
-                pluginInstance.ReplyPlayer(caller, "PetNotFound", value);
+                pluginInstance.SendMessageToPlayer(caller, "PetNotFound", value);
                 return false;   
             }
             return true;
@@ -96,7 +96,7 @@ namespace RestoreMonarchy.UPets
                 if (pet != null)
                 {
                     pluginInstance.PetsService.InvokeKillPet(pet);
-                    pluginInstance.ReplyPlayer(player, "PetDespawnSuccess", config.Name);
+                    pluginInstance.SendMessageToPlayer(player, "PetDespawnSuccess", config.Name);
                     return;
                 }
             }
@@ -119,11 +119,11 @@ namespace RestoreMonarchy.UPets
                     TaskDispatcher.QueueOnMainThread(() => 
                     {
                         pluginInstance.PetsService.SpawnPet(player, pet);
-                        pluginInstance.ReplyPlayer(player, "PetSpawnSuccess", config.Name);
+                        pluginInstance.SendMessageToPlayer(player, "PetSpawnSuccess", config.Name);
                     });                    
                 }
                 else
-                    pluginInstance.ReplyPlayer(player, "PetSpawnFail", config.Name);
+                    pluginInstance.SendMessageToPlayer(player, "PetSpawnFail", config.Name);
             });
         }
 
@@ -131,19 +131,19 @@ namespace RestoreMonarchy.UPets
         {
             if (UconomyHelper.IsLoaded() == false)
             {
-                pluginInstance.ReplyPlayer(player, "PetShopDisabled");
+                pluginInstance.SendMessageToPlayer(player, "PetShopDisabled");
                 return;
             }
 
             if (!player.HasPermission(config.Permission) && !player.IsAdmin && !string.IsNullOrEmpty(config.Permission))
             {
-                pluginInstance.ReplyPlayer(player, "PetBuyNoPermission", config.Name);
+                pluginInstance.SendMessageToPlayer(player, "PetBuyNoPermission", config.Name);
                 return;
             }
 
             if (pluginInstance.Database.GetPlayerPets(player.Id).Any(x => x.AnimalId == config.Id))
             {
-                pluginInstance.ReplyPlayer(player, "PetBuyAlreadyHave", config.Name);
+                pluginInstance.SendMessageToPlayer(player, "PetBuyAlreadyHave", config.Name);
                 return;
             }
 
@@ -151,7 +151,7 @@ namespace RestoreMonarchy.UPets
             {
                 if (UconomyHelper.GetPlayerBalance(player.Id) < config.Cost)
                 {
-                    pluginInstance.ReplyPlayer(player, "PetCantAfford", config.Name, config.Cost);
+                    pluginInstance.SendMessageToPlayer(player, "PetCantAfford", config.Name, config.Cost);
                     return;
                 }
 
@@ -165,7 +165,7 @@ namespace RestoreMonarchy.UPets
                         PurchaseDate = DateTime.UtcNow
                     });
                 });                
-                pluginInstance.ReplyPlayer(player, "PetBuySuccess", config.Name, config.Cost);
+                pluginInstance.SendMessageToPlayer(player, "PetBuySuccess", config.Name, config.Cost);
             });
         }
 
@@ -173,7 +173,7 @@ namespace RestoreMonarchy.UPets
         {
             if (UconomyHelper.IsLoaded() == false)
             {
-                pluginInstance.ReplyPlayer(caller, "PetShopDisabled");
+                pluginInstance.SendMessageToPlayer(caller, "PetShopDisabled");
                 return;
             }
 
@@ -187,9 +187,9 @@ namespace RestoreMonarchy.UPets
             }
 
             if (sb.Length < 2)
-                pluginInstance.ReplyPlayer(caller, "PetShopNone");
+                pluginInstance.SendMessageToPlayer(caller, "PetShopNone");
             else
-                pluginInstance.ReplyPlayer(caller, sb.ToString().TrimEnd(','));
+                pluginInstance.SendMessageToPlayer(caller, sb.ToString().TrimEnd(','));
         }
 
         public static void ListCommand(IRocketPlayer caller)
@@ -205,21 +205,21 @@ namespace RestoreMonarchy.UPets
             }
 
             if (pets.Count == 0)
-                pluginInstance.ReplyPlayer(caller, "PetListNone");
+                pluginInstance.SendMessageToPlayer(caller, "PetListNone");
             else
-                pluginInstance.ReplyPlayer(caller, "PetList", string.Join(", ", pets));
+                pluginInstance.SendMessageToPlayer(caller, "PetList", string.Join(", ", pets));
             
         }
 
         public static void HelpCommand(IRocketPlayer caller)
         {
-            pluginInstance.ReplyPlayer(caller, "PetHelpLine1");
+            pluginInstance.SendMessageToPlayer(caller, "PetHelpLine1");
             if (UconomyHelper.IsLoaded())
             {
-                pluginInstance.ReplyPlayer(caller, "PetHelpLine2");
-                pluginInstance.ReplyPlayer(caller, "PetHelpLine3");
+                pluginInstance.SendMessageToPlayer(caller, "PetHelpLine2");
+                pluginInstance.SendMessageToPlayer(caller, "PetHelpLine3");
             }            
-            pluginInstance.ReplyPlayer(caller, "PetHelpLine4");
+            pluginInstance.SendMessageToPlayer(caller, "PetHelpLine4");
         }
 
 

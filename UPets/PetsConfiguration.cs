@@ -7,6 +7,7 @@ namespace RestoreMonarchy.UPets
     public class PetsConfiguration : IRocketPluginConfiguration
     {
         public string MessageColor { get; set; }
+        public string MessageIconUrl { get; set; } = "https://i.imgur.com/AdIgUbl.png";
         public float MinDistance { get; set; }
         public float MaxDistance { get; set; }
         public bool UseMySQL { get; set; }        
@@ -23,6 +24,7 @@ namespace RestoreMonarchy.UPets
         public void LoadDefaults()
         {
             MessageColor = "#FF00FF";
+            MessageIconUrl = "https://i.imgur.com/AdIgUbl.png";
             MinDistance = 5;
             MaxDistance = 50;
             UseMySQL = false;
