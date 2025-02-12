@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UPets.Reflection;
 
 namespace RestoreMonarchy.UPets.Services
 {
@@ -111,6 +112,7 @@ namespace RestoreMonarchy.UPets.Services
         private void RemovePet(PlayerPet pet)
         {
             pet.Animal.transform.position = undergroundPosition;
+            ReflectionUtil.callMethod("stop", pet.Animal);
             ActivePets.Remove(pet);
             OnPetDespawned.TryInvoke(pet);
         }
