@@ -6,7 +6,7 @@ namespace RestoreMonarchy.UPets.Patches
     [HarmonyPatch(typeof(AnimalManager))]
     class AnimalManagerPatches
     {
-        [HarmonyPatch("sendAnimalAttack")]
+        [HarmonyPatch("sendAnimalAttack", typeof(Animal), typeof(byte))]
         [HarmonyPrefix]
         public static bool PrefixAttack(Animal animal)
         {
@@ -20,7 +20,7 @@ namespace RestoreMonarchy.UPets.Patches
             return !PetsPlugin.Instance.PetsService.IsPet(animal);
         }
 
-        [HarmonyPatch("sendAnimalStartle")]
+        [HarmonyPatch("sendAnimalStartle", typeof(Animal), typeof(byte))]
         [HarmonyPrefix]
         public static bool PrefixStartle(Animal animal)
         {

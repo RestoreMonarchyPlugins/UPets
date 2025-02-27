@@ -5,14 +5,14 @@
 		<LangVersion>latest</LangVersion>
 		<AssemblyName>UPets</AssemblyName>
 		<RootNamespace>RestoreMonarchy.UPets</RootNamespace>
-		<Version>3.2.4</Version>
+		<Version>3.2.5</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Dapper" Version="2.0.78" />
 	  <PackageReference Include="Lib.Harmony" Version="2.3.3" />
 	  <PackageReference Include="MySql.Data" Version="8.0.30" />
-	  <PackageReference Include="RestoreMonarchy.RocketRedist" Version="3.24.5.1" ExcludeAssets="runtime" />
+	  <PackageReference Include="RestoreMonarchy.RocketRedist" Version="3.25.1" ExcludeAssets="runtime" />
 	</ItemGroup>
 
 	<ItemGroup>
